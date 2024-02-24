@@ -12,7 +12,7 @@
   },
   "aliases": {
     "components": "@scratch/lib.shadow/components",
-    "ui": "@scratch/lib.shadow/ui",
+    "ui/*": "@scratch/lib.shadow/ui/*.tsx",
     "utils": "@scratch/lib.shadow/utils"
   }
 }
