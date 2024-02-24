@@ -1,0 +1,7 @@
+{
+  "name": "@crossnokaye/ux",
+  "packageManager": "npm@10.2.4",
+  "workspaces": [
+    "packages/*/*"
+  ]
+}
