@@ -3,7 +3,12 @@
   "packageManager": "npm@10.2.4",
   "scripts": {
     "dev": "exec npm run -w @scratch/apps.studio dev",
+    "lint": "exec npm run -ws lint",
     "type-check": "exec npm run -ws type-check"
+  },
+  "resolutions": {
+    "eslint": "8.57.0",
+    "typescript": "5.3.3"
   },
   "workspaces": [
     "packages/*/*"
