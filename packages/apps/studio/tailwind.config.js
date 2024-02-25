@@ -1,3 +1,5 @@
+/* eslint-env node */
+
 const base = require("@scratch/components.shadow/tailwind.config.js");
 
 /** @type {import('tailwindcss').Config} */
