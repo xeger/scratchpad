@@ -1,18 +1,18 @@
-import { Button } from "@scratch/lib.shadow/ui/button";
-import { Toaster } from "@scratch/lib.shadow/ui/toaster";
-import { useState } from "react";
-import "./App.css";
-import reactLogo from "./assets/react.svg";
-import Thing from "./localstuff/Thing";
-import { Announcement } from "./localstuff/announcement";
+import { Announcement } from "@scratch/components.ego/announcement";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "./localstuff/page-header";
-import { SiteFooter } from "./localstuff/site-footer";
-import { SiteHeader } from "./localstuff/site-header";
-import { ThemeProvider } from "./localstuff/theme-provider";
+} from "@scratch/components.ego/page-header";
+import { SiteFooter } from "@scratch/components.ego/site-footer";
+import { SiteHeader } from "@scratch/components.ego/site-header";
+import { ThemeProvider } from "@scratch/components.ego/theme-provider";
+import { Button } from "@scratch/components.shadow/ui/button";
+import { Toaster } from "@scratch/components.shadow/ui/toaster";
+import { useState } from "react";
+import "./App.css";
+import reactLogo from "./assets/react.svg";
+import Thing from "./ui/Thing";
 import shadcnLogo from "/shadcn.png";
 import viteLogo from "/vite.svg";
 

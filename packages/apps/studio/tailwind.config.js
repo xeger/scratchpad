@@ -1,10 +1,11 @@
-const base = require('@scratch/lib.shadow/tailwind.config.js')
+const base = require("@scratch/components.shadow/tailwind.config.js");
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   ...base,
   content: [
-    '../../lib/shadow/src/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}'
+    "../../components/shadow/src/**/*.{ts,tsx}",
+    "../../components/ego/src/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
-}
+};
