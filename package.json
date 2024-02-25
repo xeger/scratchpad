@@ -4,6 +4,7 @@
   "scripts": {
     "dev": "exec npm run -w @scratch/apps.studio dev",
     "lint": "exec npm run -ws lint",
+    "lint:fix": "exec npm run -ws lint:fix",
     "type-check": "exec npm run -ws type-check"
   },
   "resolutions": {

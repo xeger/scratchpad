@@ -4,7 +4,8 @@
   "description": "Monorepo-wide eslint configuration and custom rules.",
   "main": "./index.cjs",
   "scripts": {
-    "lint": "eslint . --ext cjs,ts --report-unused-disable-directives",
+    "lint": "eslint . --ext cjs --report-unused-disable-directives",
+    "lint:fix": "eslint . --ext cjs --fix",
     "test": "exit 0",
     "type-check": "exit 0"
   },
