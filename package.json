@@ -1,6 +1,9 @@
 {
   "name": "@crossnokaye/ux",
   "packageManager": "npm@10.2.4",
+  "scripts": {
+    "dev": "exec npm run -w @scratch/apps.studio dev"
+  },
   "workspaces": [
     "packages/*/*"
   ]

@@ -1,5 +1,3 @@
-// HACK: had to alter ShadCN generated imports due to our use of package.json exports mapping
-// (do we need to tweak components.json aliases to use local imports?)
 import {
   Toast,
   ToastClose,
@@ -7,8 +5,8 @@ import {
   ToastProvider,
   ToastTitle,
   ToastViewport,
-} from "./toast";
-import { useToast } from "./use-toast";
+} from "@scratch/lib.shadow/ui/toast";
+import { useToast } from "@scratch/lib.shadow/ui/use-toast";
 
 export function Toaster() {
   const { toasts } = useToast();
