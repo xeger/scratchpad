@@ -12,7 +12,7 @@ import { Toaster } from "@scratch/components.shadow/ui/toaster";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
-import Thing from "./ui/Thing";
+import UserOrgList from "./ui/UserOrgList";
 import shadcnLogo from "/shadcn.png";
 import viteLogo from "/vite.svg";
 
@@ -41,32 +41,21 @@ function App() {
         </PageHeaderDescription>
       </PageHeader>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla interdum
-        vulputate diam. Nam turpis leo, iaculis vel diam nec, vestibulum
-        molestie ante. Integer suscipit sem ac varius vehicula. Vivamus varius
-        odio sit amet fringilla eleifend. Fusce placerat, purus in egestas
-        euismod, erat velit fermentum metus, in convallis urna urna blandit
-        massa. Phasellus at auctor purus. Ut fermentum, libero interdum
-        fermentum posuere, sem augue mollis arcu, blandit interdum nisi massa
-        non metus. Mauris pretium augue ut enim mollis posuere. Fusce nec neque
-        tellus. Nam eu dui quis orci tempus porta. Praesent urna lectus, blandit
-        eu faucibus ac, malesuada eu elit.
+        Here is a pretty button to prove that theme colors work:
+        <Button
+          className="block"
+          onClick={() => setCount(count + 1)}
+          variant={variant}
+        >
+          {variant} {count}
+        </Button>
       </p>
-      <Thing />
-      <Button onClick={() => setCount(count + 1)} variant={variant}>
-        {variant} {count}
-      </Button>
       <p>
-        Integer porta placerat risus, bibendum semper ex sodales non. Phasellus
-        nunc quam, malesuada vel metus feugiat, lobortis suscipit ex. Nunc nec
-        ex dapibus, consectetur orci quis, congue ipsum. Vivamus molestie purus
-        vel quam aliquam vulputate. Curabitur id ligula lobortis est porta
-        dignissim. Ut eu ligula mi. Nam lacinia est nec sem iaculis aliquam.
-        Aenean laoreet libero nec nulla lacinia, sit amet molestie mauris
-        sollicitudin.
+        Here is proof that the API SDK works:
+        <UserOrgList />
       </p>
       <hr className="my-8" />
-      <div className="flex-row w-full">
+      <div className="flex items-center justify-center w-full">
         <a href="https://react.dev/">
           <img src={reactLogo} className="inline logo" alt="React logo" />
         </a>

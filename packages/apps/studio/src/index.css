@@ -1,1 +1,5 @@
 @import url("@scratch/components.shadow/global.css");
+
+#root {
+  margin: 0 1rem;
+}
