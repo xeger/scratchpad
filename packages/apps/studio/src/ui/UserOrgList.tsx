@@ -10,6 +10,11 @@ const sdk = new SDK({
   serverURL: window.origin,
 });
 
+/**
+ * Given a Speakeasy response object, verify a 200 status and a truth parsed-response field
+ * of the given name; return the parsed response field, preserving its type identity but removing
+ * any union with null or undefined.
+ */
 function assert200<
   TResponse extends { statusCode: number },
   TField extends keyof TResponse,
