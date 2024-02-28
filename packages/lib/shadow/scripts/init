@@ -1,0 +1,16 @@
+#! /bin/sh -e
+
+npx shadcn-ui init
+
+# if any of these steps fail, then ShadCN emitted some new type of file or subfolder
+# that we can't handle; use your noggin, consult with the team, and figure
+# out where it should live -- then fix this script for the good of others!
+
+echo "Adapt ShadCN output to monorepo (organizational need)..."
+mkdir -p ./src
+rmdir ./@scratch
+
+mkdir -p src/utils
+mv src/utils.ts src/utils/index.ts
+
+npm run lint:fix

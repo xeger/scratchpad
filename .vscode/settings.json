@@ -26,6 +26,7 @@
   "css.customData": [".vscode/css_custom_data.json"],
   "css.lint.unknownAtRules": "warning",
   "editor.codeActionsOnSave": ["source.organizeImports", "source.fixAll"],
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "eslint.workingDirectories": [
     {"pattern": "${workspaceRoot}/packages/*/*"}
   ],
