@@ -12,6 +12,8 @@
     "typescript": "5.3.3"
   },
   "workspaces": [
-    "packages/*/*"
+    "packages/apps/*",
+    "packages/components/*",
+    "packages/eslint-config"
   ]
 }
