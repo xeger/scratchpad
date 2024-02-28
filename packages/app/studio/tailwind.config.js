@@ -6,8 +6,8 @@ const base = require("@scratch/lib.shadow/tailwind.config.js");
 module.exports = {
   ...base,
   content: [
-    "../../components/shadow/src/**/*.{ts,tsx}",
-    "../../components/ego/src/**/*.{ts,tsx}",
+    "../../lib/shadow/src/**/*.{ts,tsx}",
+    "../../lib/ego/src/**/*.{ts,tsx}",
     "./src/**/*.{ts,tsx}",
   ],
 };

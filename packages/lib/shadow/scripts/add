@@ -8,6 +8,7 @@ npx shadcn-ui add
 
 echo "Adapt ShadCN output to monorepo..."
 mv @scratch/lib.shadow/* ./src
-rm -Rf @scratch
+rmdir @scratch/lib.shadow
+rmdir @scratch
 
 npm run lint:fix

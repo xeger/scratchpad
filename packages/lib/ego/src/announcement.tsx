@@ -1,4 +1,4 @@
-import { Separator } from "@scratch/lib.shadow/ui/separator";
+import { Separator } from "@scratch/lib.shadow/separator";
 
 export function Announcement() {
   return (

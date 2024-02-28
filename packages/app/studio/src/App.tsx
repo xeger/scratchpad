@@ -7,8 +7,8 @@ import {
 import { SiteFooter } from "@scratch/lib.ego/site-footer";
 import { SiteHeader } from "@scratch/lib.ego/site-header";
 import { ThemeProvider } from "@scratch/lib.ego/theme-provider";
-import { Button } from "@scratch/lib.shadow/ui/button";
-import { Toaster } from "@scratch/lib.shadow/ui/toaster";
+import { Button } from "@scratch/lib.shadow/button";
+import { Toaster } from "@scratch/lib.shadow/toaster";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";

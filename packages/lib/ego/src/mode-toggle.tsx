@@ -1,12 +1,12 @@
 import { Moon, Sun } from "lucide-react";
 
-import { Button } from "@scratch/lib.shadow/ui/button";
+import { Button } from "@scratch/lib.shadow/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@scratch/lib.shadow/ui/dropdown-menu";
+} from "@scratch/lib.shadow/dropdown-menu";
 import { useTheme } from "./theme-provider";
 
 export function ModeToggle() {

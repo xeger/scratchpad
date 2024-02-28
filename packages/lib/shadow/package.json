@@ -4,11 +4,11 @@
   "description": "An instantiatoin of ShadCN UI.",
   "type": "module",
   "exports": {
-    ".": "./src",
-    "./global.css": "./src/global.css",
-    "./hooks/*": "./src/hooks/*.ts",
+    "./globals.css": "./globals.css",
     "./tailwind.config.js": "./tailwind.config.js",
-    "./utils": "./src/utils"
+    "./utils": "./src/utils.ts",
+    "./use-*": "./src/use-*.ts",
+    "./*": "./src/*.tsx"
   },
   "scripts": {
     "add": "shadcn-ui add",
