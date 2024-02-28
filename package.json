@@ -2,7 +2,7 @@
   "name": "@crossnokaye/ux",
   "packageManager": "npm@10.2.4",
   "scripts": {
-    "dev": "exec npm run -w @scratch/apps.studio dev",
+    "dev": "exec npm run -w @scratch/app.studio dev",
     "lint": "exec npm run -ws lint",
     "lint:fix": "exec npm run -ws lint:fix",
     "type-check": "exec npm run -ws type-check"
