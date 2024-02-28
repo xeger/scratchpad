@@ -12,8 +12,8 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@scratch/lib.ego": "*",
-    "@scratch/lib.shadow": "*",
+    "@scratch/ui.elements": "*",
+    "@scratch/ui.primitives": "*",
     "atlas": "github:crossnokaye/typescript-sdk",
     "invariant": "^2.2.4",
     "react": "^18.2.0",

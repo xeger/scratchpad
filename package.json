@@ -13,7 +13,7 @@
   },
   "workspaces": [
     "packages/app/*",
-    "packages/lib/*",
+    "packages/ui/*",
     "packages/eslint-config"
   ]
 }

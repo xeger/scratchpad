@@ -1,0 +1,14 @@
+#! /bin/sh -e
+
+npx shadcn-ui add
+
+# if any of these steps fail, then ShadCN emitted some new type of file or subfolder
+# that we can't handle; use your noggin, consult with the team, and figure
+# out where it should live -- then fix this script for the good of others!
+
+echo "Adapt ShadCN output to monorepo..."
+mv @scratch/ui.primitives/* ./src
+rmdir @scratch/ui.primitives
+rmdir @scratch
+
+npm run lint:fix

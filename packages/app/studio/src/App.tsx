@@ -1,18 +1,18 @@
-import { Announcement } from "@scratch/lib.ego/announcement";
+import { Announcement } from "@scratch/ui.elements/announcement";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@scratch/lib.ego/page-header";
-import { SiteFooter } from "@scratch/lib.ego/site-footer";
-import { SiteHeader } from "@scratch/lib.ego/site-header";
-import { ThemeProvider } from "@scratch/lib.ego/theme-provider";
-import { Button } from "@scratch/lib.shadow/button";
-import { Toaster } from "@scratch/lib.shadow/toaster";
+} from "@scratch/ui.elements/page-header";
+import { SiteFooter } from "@scratch/ui.elements/site-footer";
+import { SiteHeader } from "@scratch/ui.elements/site-header";
+import { ThemeProvider } from "@scratch/ui.elements/theme-provider";
+import { Button } from "@scratch/ui.primitives/button";
+import { Toaster } from "@scratch/ui.primitives/toaster";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
-import UserOrgList from "./ui/UserOrgList";
+import { UserOrgList } from "./experiments/speakeasy";
 import shadcnLogo from "/shadcn.png";
 import viteLogo from "/vite.svg";
 
@@ -50,10 +50,8 @@ function App() {
           {variant} {count}
         </Button>
       </p>
-      <p>
-        Here is proof that the API SDK works:
-        <UserOrgList />
-      </p>
+      <p>Here is proof that the API SDK works:</p>
+      <UserOrgList />
       <hr className="my-8" />
       <div className="flex items-center justify-center w-full">
         <a href="https://react.dev/">
