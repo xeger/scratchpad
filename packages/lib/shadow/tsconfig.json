@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    // ShadCN generates code with unused parameters in a few specific circumstances.
+    "noUnusedParameters": false,
+    // Necessary for `shadcn-ui` to emit files in the right location; otherwise, we don't rely on these.
+    // (We use package.json exports throughout our monorepo, instead.)
+    "paths": {
+      "@scratch/lib.shadow/*": ["./src/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

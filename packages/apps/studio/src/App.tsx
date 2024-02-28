@@ -1,14 +1,14 @@
-import { Announcement } from "@scratch/components.ego/announcement";
+import { Announcement } from "@scratch/lib.ego/announcement";
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@scratch/components.ego/page-header";
-import { SiteFooter } from "@scratch/components.ego/site-footer";
-import { SiteHeader } from "@scratch/components.ego/site-header";
-import { ThemeProvider } from "@scratch/components.ego/theme-provider";
-import { Button } from "@scratch/components.shadow/ui/button";
-import { Toaster } from "@scratch/components.shadow/ui/toaster";
+} from "@scratch/lib.ego/page-header";
+import { SiteFooter } from "@scratch/lib.ego/site-footer";
+import { SiteHeader } from "@scratch/lib.ego/site-header";
+import { ThemeProvider } from "@scratch/lib.ego/theme-provider";
+import { Button } from "@scratch/lib.shadow/ui/button";
+import { Toaster } from "@scratch/lib.shadow/ui/toaster";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
