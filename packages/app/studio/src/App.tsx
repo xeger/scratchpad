@@ -1,4 +1,4 @@
-import { Announcement } from "@scratch/ui.elements/announcement";
+import { Notice } from "@scratch/ui.elements/notice";
 import {
   PageHeader,
   PageHeaderDescription,
@@ -34,7 +34,10 @@ function App() {
     <ThemeProvider>
       <SiteHeader />
       <PageHeader>
-        <Announcement />
+        <Notice
+          alt="Sup, mobile user?"
+          text="I am happy to see that you are visiting our app on a huge monitor that has plenty of horizontal space for me to fill!"
+        />
         <PageHeaderHeading>Lorem Ipsum</PageHeaderHeading>
         <PageHeaderDescription>
           Consectetur adipiscing elit.

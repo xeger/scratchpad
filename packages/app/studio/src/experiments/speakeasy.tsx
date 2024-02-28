@@ -1,3 +1,10 @@
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@scratch/ui.primitives/card";
 import { SDK } from "atlas";
 import { Organization } from "atlas/models/components";
 import { useEffect, useState } from "react";
@@ -32,7 +39,7 @@ function assert200<
 
 function UserOrgList() {
   const [orgs, setOrgs] = useState<Organization[]>([]);
-  const [error, setError] = useState<unknown>();
+  const [error, setError] = useState<Error | undefined>();
   useEffect(() => {
     sdk.iam
       .listUserOrgs(userId)
@@ -42,14 +49,32 @@ function UserOrgList() {
   }, []);
 
   if (error) {
-    return <span className=""></span>;
+    return (
+      <Card className="bg-destructive text-destructive-foreground">
+        <CardHeader>
+          <CardTitle>API Call Failed</CardTitle>
+          <CardDescription>
+            Did you export <code>VITE_ATLAS_USER_ID</code> and{" "}
+            <code>VITE_ATLAS_ACCESS_TOKEN</code>
+          </CardDescription>
+        </CardHeader>
+        <CardContent>{error.toString()}</CardContent>
+      </Card>
+    );
   } else {
     return (
-      <ul className="list-disc list-inside">
-        {orgs.map((org) => (
-          <li key={org.organizationId}>{org.displayName}</li>
-        ))}
-      </ul>
+      <Card>
+        <CardHeader>
+          <CardTitle>My Organizations</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-disc list-inside">
+            {orgs.map((org) => (
+              <li key={org.organizationId}>{org.displayName}</li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
     );
   }
 }
