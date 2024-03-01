@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/xeger/scratchpad#readme",
   "devDependencies": {
-    "@scratch/eslint-config": "*",
+    "@crossnokaye/eslint-config": "*",
     "@types/react": "^18.2.52",
     "typescript": "^5.3.3"
   },

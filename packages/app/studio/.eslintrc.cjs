@@ -1,5 +1,7 @@
+/* eslint-env node */
+
 module.exports = {
   root: true,
-  extends: ["@scratch"],
-  ignorePatterns: ["dist"],
+  extends: ['@crossnokaye'],
+  ignorePatterns: ['dist'],
 };
