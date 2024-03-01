@@ -1,29 +1,22 @@
-import { Notice } from "@scratch/ui.elements/notice";
+import { Notice } from '@scratch/ui.elements/notice';
 import {
   PageHeader,
   PageHeaderDescription,
   PageHeaderHeading,
-} from "@scratch/ui.elements/page-header";
-import { SiteFooter } from "@scratch/ui.elements/site-footer";
-import { SiteHeader } from "@scratch/ui.elements/site-header";
-import { ThemeProvider } from "@scratch/ui.elements/theme-provider";
-import { Button } from "@scratch/ui.primitives/button";
-import { Toaster } from "@scratch/ui.primitives/toaster";
-import { useState } from "react";
-import "./App.css";
-import reactLogo from "./assets/react.svg";
-import { UserOrgList } from "./experiments/speakeasy";
-import shadcnLogo from "/shadcn.png";
-import viteLogo from "/vite.svg";
+} from '@scratch/ui.elements/page-header';
+import { SiteFooter } from '@scratch/ui.elements/site-footer';
+import { SiteHeader } from '@scratch/ui.elements/site-header';
+import { ThemeProvider } from '@scratch/ui.elements/theme-provider';
+import { Button } from '@scratch/ui.primitives/button';
+import { Toaster } from '@scratch/ui.primitives/toaster';
+import { useState } from 'react';
+import './App.css';
+import reactLogo from './assets/react.svg';
+import { UserOrgList } from './experiments/speakeasy';
+import shadcnLogo from '/shadcn.png';
+import viteLogo from '/vite.svg';
 
-const variants = [
-  "default",
-  "destructive",
-  "outline",
-  "secondary",
-  "ghost",
-  "link",
-] as const;
+const variants = ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'] as const;
 
 function App() {
   const [count, setCount] = useState(0);
@@ -39,17 +32,11 @@ function App() {
           text="I am happy to see that you are visiting our app on a huge monitor that has plenty of horizontal space for me to fill!"
         />
         <PageHeaderHeading>Lorem Ipsum</PageHeaderHeading>
-        <PageHeaderDescription>
-          Consectetur adipiscing elit.
-        </PageHeaderDescription>
+        <PageHeaderDescription>Consectetur adipiscing elit.</PageHeaderDescription>
       </PageHeader>
       <p>
         Here is a pretty button to prove that theme colors work:
-        <Button
-          className="block"
-          onClick={() => setCount(count + 1)}
-          variant={variant}
-        >
+        <Button className="block" onClick={() => setCount(count + 1)} variant={variant}>
           {variant} {count}
         </Button>
       </p>
