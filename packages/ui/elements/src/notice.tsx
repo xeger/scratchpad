@@ -1,7 +1,7 @@
 import { cn } from '@scratch/ui.primitives/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-const announcementVariants = cva(
+const noticeVariants = cva(
   'inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
@@ -16,7 +16,7 @@ const announcementVariants = cva(
   }
 );
 
-export interface NoticeProps extends VariantProps<typeof announcementVariants> {
+export interface NoticeProps extends VariantProps<typeof noticeVariants> {
   alt?: string;
   text: string;
 }
@@ -28,7 +28,7 @@ export function Notice({ alt, text, variant }: NoticeProps) {
   return (
     <span
       className={cn(
-        announcementVariants({
+        noticeVariants({
           variant,
           className: 'inline-flex items-center rounded-lg px-3 py-1 text-sm font-medium',
         })
