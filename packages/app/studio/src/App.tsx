@@ -7,22 +7,15 @@ import {
 import { SiteFooter } from '@scratch/ui.elements/site-footer';
 import { SiteHeader } from '@scratch/ui.elements/site-header';
 import { ThemeProvider } from '@scratch/ui.elements/theme-provider';
-import { Button } from '@scratch/ui.primitives/button';
 import { Toaster } from '@scratch/ui.primitives/toaster';
-import { useState } from 'react';
 import './App.css';
 import reactLogo from './assets/react.svg';
 import { UserOrgList } from './experiments/speakeasy';
+import { Variants } from './experiments/variants';
 import shadcnLogo from '/shadcn.png';
 import viteLogo from '/vite.svg';
 
-const variants = ['default', 'destructive', 'outline', 'secondary', 'ghost', 'link'] as const;
-
 function App() {
-  const [count, setCount] = useState(0);
-
-  const variant = variants[count % variants.length];
-
   return (
     <ThemeProvider>
       <SiteHeader />
@@ -34,15 +27,10 @@ function App() {
         <PageHeaderHeading>Lorem Ipsum</PageHeaderHeading>
         <PageHeaderDescription>Consectetur adipiscing elit.</PageHeaderDescription>
       </PageHeader>
-      <p>
-        Here is a pretty button to prove that theme colors work:
-        <Button className="block" onClick={() => setCount(count + 1)} variant={variant}>
-          {variant} {count}
-        </Button>
-      </p>
-      <p>Here is proof that the API SDK works:</p>
-      <UserOrgList />
-      <hr className="my-8" />
+      <div className="flex-col items-center justify-center space-y-4">
+        <Variants />
+        <UserOrgList />
+      </div>
       <div className="flex items-center justify-center w-full">
         <a href="https://react.dev/">
           <img src={reactLogo} className="inline logo" alt="React logo" />

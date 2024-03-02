@@ -1,12 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@scratch/ui.primitives/card';
+import { Notice } from '@scratch/ui.elements/notice';
+import { Card, CardContent, CardHeader, CardTitle } from '@scratch/ui.primitives/card';
 import { SDK } from 'atlas';
 import { Organization } from 'atlas/models/components';
+import invariant from 'invariant';
 import { useEffect, useState } from 'react';
 
 const userId = import.meta.env.VITE_ATLAS_USER_ID;
@@ -37,45 +33,56 @@ function assert200<TResponse extends { statusCode: number }, TField extends keyo
   }
 }
 
+/**
+ * Given an object and a field name, return the field value if defined, or a default.
+ */
+function withDefault<T extends object, F extends keyof T>(
+  obj: T | undefined,
+  field: F,
+  def: NonNullable<T[F]>
+): NonNullable<T[F]> {
+  return obj?.[field] ?? def;
+}
+
 function UserOrgList() {
   const [orgs, setOrgs] = useState<Organization[]>([]);
   const [error, setError] = useState<Error | undefined>();
   useEffect(() => {
-    sdk.iam
-      .listUserOrgs(userId)
-      .then((response) => assert200(response, 'organizationCollection'))
-      .then(setOrgs)
-      .catch(setError);
+    try {
+      invariant(userId, 'VITE_ATLAS_USER_ID must be set');
+      invariant(accessToken, 'VITE_ATLAS_ACCESS_TOKEN must be set');
+      sdk.iam
+        .listUserOrgs(userId)
+        .then((response) => assert200(response, 'organizationCollection'))
+        .then(setOrgs)
+        .catch(setError);
+    } catch (err) {
+      setError(err as Error);
+    }
   }, []);
 
-  if (error) {
-    return (
-      <Card className="bg-destructive text-destructive-foreground">
-        <CardHeader>
-          <CardTitle>API Call Failed</CardTitle>
-          <CardDescription>
-            Did you export <code>VITE_ATLAS_USER_ID</code> and <code>VITE_ATLAS_ACCESS_TOKEN</code>
-          </CardDescription>
-        </CardHeader>
-        <CardContent>{error.toString()}</CardContent>
-      </Card>
-    );
-  } else {
-    return (
-      <Card>
-        <CardHeader>
-          <CardTitle>My Organizations</CardTitle>
-        </CardHeader>
-        <CardContent>
+  const countFac = (org: Organization) => withDefault(org, 'facilities', []).length;
+
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>My Organizations</CardTitle>
+      </CardHeader>
+      <CardContent>
+        {error ? (
+          <Notice text={error.toString()} variant="destructive" />
+        ) : (
           <ul className="list-disc list-inside">
             {orgs.map((org) => (
-              <li key={org.organizationId}>{org.displayName}</li>
+              <li key={org.organizationId}>
+                {org.displayName} (${countFac(org)})
+              </li>
             ))}
           </ul>
-        </CardContent>
-      </Card>
-    );
-  }
+        )}
+      </CardContent>
+    </Card>
+  );
 }
 
 export { UserOrgList };
