@@ -10,7 +10,7 @@ import { ThemeProvider } from '@scratch/ui.elements/theme-provider';
 import { Toaster } from '@scratch/ui.primitives/toaster';
 import './App.css';
 import reactLogo from './assets/react.svg';
-import { UserOrgList } from './experiments/speakeasy';
+import { UserOrgList } from './experiments/sdk';
 import { Variants } from './experiments/variants';
 import shadcnLogo from '/shadcn.png';
 import viteLogo from '/vite.svg';

@@ -12,6 +12,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
+    "@scratch/svc.atlas": "^0.0.1",
     "@scratch/ui.elements": "*",
     "@scratch/ui.primitives": "*",
     "atlas": "github:crossnokaye/typescript-sdk",
