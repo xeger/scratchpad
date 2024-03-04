@@ -1,4 +1,4 @@
-import { cn } from '@scratch/ui.primitives/utils';
+import { cn } from '@crossnokaye/ui-primitives/utils';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 const noticeVariants = cva(

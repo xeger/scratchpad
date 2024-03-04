@@ -1,7 +1,7 @@
+import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
 import { assertResponse, useAtlas, withDefault } from '@scratch/svc.atlas';
 import { Organization } from '@scratch/svc.atlas/models/components';
 import { Notice } from '@scratch/ui.elements/notice';
-import { Card, CardContent, CardHeader, CardTitle } from '@scratch/ui.primitives/card';
 import { useQuery } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import NormalLayout from '../../layouts/normal';

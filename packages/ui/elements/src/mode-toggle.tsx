@@ -1,12 +1,12 @@
 import { Moon, Sun } from 'lucide-react';
 
-import { Button } from '@scratch/ui.primitives/button';
+import { Button } from '@crossnokaye/ui-primitives/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@scratch/ui.primitives/dropdown-menu';
+} from '@crossnokaye/ui-primitives/dropdown-menu';
 import { useTheme } from './theme-provider';
 
 export function ModeToggle() {

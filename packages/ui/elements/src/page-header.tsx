@@ -1,6 +1,6 @@
 //import Balance from "react-wrap-balancer"
 
-import { cn } from '@scratch/ui.primitives/utils';
+import { cn } from '@crossnokaye/ui-primitives/utils';
 
 function PageHeader({ className, children, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   return (

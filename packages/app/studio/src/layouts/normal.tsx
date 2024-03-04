@@ -1,3 +1,4 @@
+import { Toaster } from '@crossnokaye/ui-primitives/toaster';
 import { Notice } from '@scratch/ui.elements/notice';
 import {
   PageHeader,
@@ -6,7 +7,6 @@ import {
 } from '@scratch/ui.elements/page-header';
 import { SiteFooter } from '@scratch/ui.elements/site-footer';
 import { SiteHeader } from '@scratch/ui.elements/site-header';
-import { Toaster } from '@scratch/ui.primitives/toaster';
 import './normal.css';
 
 function NormalLayout({ children }: { children: React.ReactNode }) {

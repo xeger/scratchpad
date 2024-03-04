@@ -1,5 +1,5 @@
-import { Button } from '@scratch/ui.primitives/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@scratch/ui.primitives/card';
+import { Button } from '@crossnokaye/ui-primitives/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
 import NormalLayout from '../../layouts/normal';
