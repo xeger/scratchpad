@@ -1,33 +1,19 @@
-import { addJitter, assertResponse, useAtlas, withDefault } from '@scratch/svc.atlas';
+import { assertResponse, useAtlas, withDefault } from '@scratch/svc.atlas';
 import { Organization } from '@scratch/svc.atlas/models/components';
 import { Notice } from '@scratch/ui.elements/notice';
 import { Card, CardContent, CardHeader, CardTitle } from '@scratch/ui.primitives/card';
-import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 
 function UserOrgList() {
-  const { sdk, session } = useAtlas(import.meta.env);
-  const [orgs, setOrgs] = useState<Organization[] | undefined>();
-  const [error, setError] = useState<Error | undefined>();
+  const { sdk, session } = useAtlas();
 
-  useEffect(
-    () =>
-      addJitter(() => {
-        if (session) {
-          sdk.iam
-            .listUserOrgs(session.userId)
-            .then((response) => assertResponse(response, 'organizationCollection'))
-            .then(setOrgs)
-            .catch(setError);
-        } else {
-          setError(
-            new Error(
-              `Please export VITE_ATLAS_ACCESS_TOKEN and VITE_ATLAS_USER_ID in development mode.`
-            )
-          );
-        }
-      }),
-    [sdk, session]
-  );
+  const { data, error, isPending } = useQuery({
+    queryKey: ['userOrgs', session.userId],
+    queryFn: () =>
+      sdk.iam
+        .listUserOrgs(session?.userId ?? '')
+        .then((response) => assertResponse(response, 'organizationCollection')),
+  });
 
   const countFac = (org: Organization) => withDefault(org, 'facilities', []).length;
 
@@ -39,16 +25,16 @@ function UserOrgList() {
       <CardContent>
         {error ? (
           <Notice text={error.toString()} variant="destructive" />
-        ) : orgs ? (
+        ) : isPending ? (
+          <Notice text="Loading..." />
+        ) : (
           <ul className="list-disc list-inside">
-            {orgs.map((org) => (
+            {data.map((org) => (
               <li key={org.organizationId}>
                 {org.displayName} (${countFac(org)})
               </li>
             ))}
           </ul>
-        ) : (
-          <Notice text="Loading..." />
         )}
       </CardContent>
     </Card>
