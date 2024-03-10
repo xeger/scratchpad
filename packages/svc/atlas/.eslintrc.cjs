@@ -1,7 +1,6 @@
-{
-  "extends": "../../../tsconfig.base.json",
-  "compilerOptions": {
-    "baseUrl": "."
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx"]
-}
+/* eslint-env node */
+
+module.exports = {
+  root: true,
+  extends: ['@crossnokaye'],
+};

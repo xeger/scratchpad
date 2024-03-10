@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
-import { assertResponse, useAtlas, withDefault } from '@scratch/svc.atlas';
+import { Skeleton } from '@crossnokaye/ui-primitives/skeleton';
+import { useAtlas, withDefault } from '@scratch/svc.atlas';
 import { Organization } from '@scratch/svc.atlas/models/components';
+import { listUserOrgs } from '@scratch/svc.atlas/queries/iam';
 import { Notice } from '@scratch/ui.elements/notice';
 import { useQuery } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
@@ -13,13 +15,7 @@ export const Route = createLazyFileRoute('/experiments/sdk')({
 function UserOrgList() {
   const { sdk, session } = useAtlas();
 
-  const { data, error, isPending } = useQuery({
-    queryKey: ['userOrgs', session.userId],
-    queryFn: () =>
-      sdk.iam
-        .listUserOrgs(session?.userId ?? '')
-        .then((response) => assertResponse(response, 'organizationCollection')),
-  });
+  const { data, error, isPending } = useQuery(listUserOrgs(sdk, session.userId, 'default'));
 
   const countFac = (org: Organization) => withDefault(org, 'facilities', []).length;
 
@@ -33,15 +29,19 @@ function UserOrgList() {
           {error ? (
             <Notice text={error.toString()} variant="destructive" />
           ) : isPending ? (
-            <Notice text="Loading..." />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+              <Skeleton className="h-4 w-[300px]" />
+            </div>
           ) : (
-            <ul className="list-disc list-inside">
+            <div className="space-y-2">
               {data.map((org) => (
-                <li key={org.organizationId}>
+                <div key={org.organizationId}>
                   {org.displayName} (${countFac(org)})
-                </li>
+                </div>
               ))}
-            </ul>
+            </div>
           )}
         </CardContent>
       </Card>
