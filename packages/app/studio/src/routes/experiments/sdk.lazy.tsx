@@ -1,10 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
 import { Skeleton } from '@crossnokaye/ui-primitives/skeleton';
-import { useAtlas, withDefault } from '@scratch/svc.atlas';
-import { Organization } from '@scratch/svc.atlas/models/components';
-import { listUserOrgs } from '@scratch/svc.atlas/queries/iam';
+import { useListUserOrgs_facilitiesExtended } from '@scratch/svc.atlas/hooks/iam';
+import { Organization_FacilitiesExtended } from '@scratch/svc.atlas/models/views';
 import { Notice } from '@scratch/ui.elements/notice';
-import { useQuery } from '@tanstack/react-query';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import NormalLayout from '../../layouts/normal';
 
@@ -13,11 +11,9 @@ export const Route = createLazyFileRoute('/experiments/sdk')({
 });
 
 function UserOrgList() {
-  const { sdk, session } = useAtlas();
+  const { data, error, isPending } = useListUserOrgs_facilitiesExtended();
 
-  const { data, error, isPending } = useQuery(listUserOrgs(sdk, session.userId, 'default'));
-
-  const countFac = (org: Organization) => withDefault(org, 'facilities', []).length;
+  const countFac = (org: Organization_FacilitiesExtended) => org.facilities.length;
 
   return (
     <NormalLayout>
