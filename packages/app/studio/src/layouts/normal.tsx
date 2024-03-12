@@ -8,6 +8,9 @@ import {
 import { SiteFooter } from '@scratch/ui.elements/site-footer';
 import { SiteHeader } from '@scratch/ui.elements/site-header';
 
+/**
+ * Copied from https://ui.shadcn.com to explore the way the ShadCN guy thinks about page layout.
+ */
 export function NormalLayout({ children }: { children: React.ReactNode }) {
   return (
     <>

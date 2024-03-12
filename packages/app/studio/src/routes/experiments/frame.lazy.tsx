@@ -13,17 +13,17 @@ function Frame() {
   return (
     <InlineFrameLayout>
       <Tabs
-        defaultValue="https://atlassandbox.io"
+        defaultValue="https://local.darkwing.atlasoffice.io"
         onValueChange={(value) => {
           frame.current?.setAttribute('src', value);
         }}
       >
         <TabsList>
-          <TabsTrigger value="https://atlassandbox.io">One</TabsTrigger>
-          <TabsTrigger value="https://crossnokaye.com">Two</TabsTrigger>
+          <TabsTrigger value="https://local.darkwing.atlasoffice.io">Darkwing</TabsTrigger>
+          <TabsTrigger value="https://crossnokaye.com">Marketing</TabsTrigger>
         </TabsList>
       </Tabs>
-      <iframe className="h-full w-full" ref={frame} src="https://atlassandbox.io" />
+      <iframe className="h-full w-full" ref={frame} src="https://local.darkwing.atlasoffice.io" />
     </InlineFrameLayout>
   );
 }

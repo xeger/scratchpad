@@ -1,26 +1,6 @@
-import { Notice } from '@scratch/ui.elements/notice';
-import {
-  PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from '@scratch/ui.elements/page-header';
-import { SiteHeader } from '@scratch/ui.elements/site-header';
-
+/**
+ * Made from scratch to push the limits of iframes.
+ */
 export function InlineFrameLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="flex flex-col h-screen">
-      <div>
-        <SiteHeader />
-        <PageHeader>
-          <Notice
-            alt="Sup, mobile user?"
-            text="I am happy to see that you are visiting our app on a huge monitor that has plenty of horizontal space for me to fill!"
-          />
-          <PageHeaderHeading>Lorem Ipsum</PageHeaderHeading>
-          <PageHeaderDescription>Consectetur adipiscing elit.</PageHeaderDescription>
-        </PageHeader>
-      </div>
-      <div className="flex-1 h-full">{children}</div>
-    </div>
-  );
+  return <div className="absolute flex-col bottom-0 left-0 right-0 top-0">{children}</div>;
 }
