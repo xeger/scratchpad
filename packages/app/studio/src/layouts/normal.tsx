@@ -7,9 +7,8 @@ import {
 } from '@scratch/ui.elements/page-header';
 import { SiteFooter } from '@scratch/ui.elements/site-footer';
 import { SiteHeader } from '@scratch/ui.elements/site-header';
-import './normal.css';
 
-function NormalLayout({ children }: { children: React.ReactNode }) {
+export function NormalLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <SiteHeader />
@@ -27,5 +26,3 @@ function NormalLayout({ children }: { children: React.ReactNode }) {
     </>
   );
 }
-
-export default NormalLayout;

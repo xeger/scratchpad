@@ -2,7 +2,7 @@ import { Button } from '@crossnokaye/ui-primitives/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import NormalLayout from '../../layouts/normal';
+import { NormalLayout } from '../../layouts/normal';
 
 export const Route = createLazyFileRoute('/experiments/variants')({
   component: Variants,

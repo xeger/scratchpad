@@ -4,7 +4,7 @@ import { useListUserOrgs_facilitiesExtended } from '@scratch/svc.atlas/hooks/iam
 import { Organization_FacilitiesExtended } from '@scratch/svc.atlas/models/views';
 import { Notice } from '@scratch/ui.elements/notice';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import NormalLayout from '../../layouts/normal';
+import { NormalLayout } from '../../layouts/normal';
 
 export const Route = createLazyFileRoute('/experiments/sdk')({
   component: UserOrgList,

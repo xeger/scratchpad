@@ -1,8 +1,10 @@
 import { Link, createLazyFileRoute } from '@tanstack/react-router';
 import reactLogo from '../assets/react.svg';
-import NormalLayout from '../layouts/normal';
+import { NormalLayout } from '../layouts/normal';
 import shadcnLogo from '/shadcn.png';
 import viteLogo from '/vite.svg';
+
+import './index.css';
 
 export const Route = createLazyFileRoute('/')({
   component: Index,
@@ -15,6 +17,9 @@ function Index() {
       <ul className="list-disc list-inside">
         <li>
           <Link to="/experiments/sdk">Atlas SDK</Link>
+        </li>
+        <li>
+          <Link to="/experiments/frame">IFrame Hijinks</Link>
         </li>
         <li>
           <Link to="/experiments/variants">Stylistic Variants</Link>

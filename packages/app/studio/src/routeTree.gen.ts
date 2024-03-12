@@ -19,6 +19,7 @@ import { Route as rootRoute } from './routes/__root'
 const IndexLazyImport = createFileRoute('/')()
 const ExperimentsVariantsLazyImport = createFileRoute('/experiments/variants')()
 const ExperimentsSdkLazyImport = createFileRoute('/experiments/sdk')()
+const ExperimentsFrameLazyImport = createFileRoute('/experiments/frame')()
 
 // Create/Update Routes
 
@@ -41,12 +42,23 @@ const ExperimentsSdkLazyRoute = ExperimentsSdkLazyImport.update({
   import('./routes/experiments/sdk.lazy').then((d) => d.Route),
 )
 
+const ExperimentsFrameLazyRoute = ExperimentsFrameLazyImport.update({
+  path: '/experiments/frame',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/experiments/frame.lazy').then((d) => d.Route),
+)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
       preLoaderRoute: typeof IndexLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/experiments/frame': {
+      preLoaderRoute: typeof ExperimentsFrameLazyImport
       parentRoute: typeof rootRoute
     }
     '/experiments/sdk': {
@@ -64,6 +76,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
+  ExperimentsFrameLazyRoute,
   ExperimentsSdkLazyRoute,
   ExperimentsVariantsLazyRoute,
 ])
