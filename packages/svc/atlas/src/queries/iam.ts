@@ -11,10 +11,13 @@ import {
 } from '@scratch/svc.atlas/models/views';
 import type { UseQueryOptions } from '@tanstack/react-query';
 
+// Speakeasy supports a discriminator & can generate one endpoint-wrapping method per `view` value
 export function listUserOrgs(sdk: SDK, userId: string): UseQueryOptions<Organization[], SDKError> {
   return {
+    // Speakeasy can do this for us & we can turn it off with RQ
     retry: (failureCount: number, error: SDKError) => error.statusCode >= 500 && failureCount < 3,
     queryKey: ['userOrgs', userId],
+    // Speakeasy support custom code generation pre- or post-fetch using "hooks"
     queryFn: () =>
       sdk.iam
         .listUserOrgs(userId)
