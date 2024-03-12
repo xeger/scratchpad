@@ -21,6 +21,7 @@ function Frame() {
         <TabsList>
           <TabsTrigger value="https://local.darkwing.atlasoffice.io">Darkwing</TabsTrigger>
           <TabsTrigger value="https://crossnokaye.com">Marketing</TabsTrigger>
+          <TabsTrigger value="https://xeger.net">Xeger</TabsTrigger>
         </TabsList>
       </Tabs>
       <iframe className="h-full w-full" ref={frame} src="https://local.darkwing.atlasoffice.io" />
