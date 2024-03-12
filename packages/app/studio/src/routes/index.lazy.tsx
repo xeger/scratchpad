@@ -19,7 +19,8 @@ function Index() {
           <Link to="/experiments/sdk">Atlas SDK</Link>
         </li>
         <li>
-          <Link to="/experiments/frame">IFrame Hijinks</Link>
+          <Link to="/experiments/frame">IFrame Hijinks</Link> (and{' '}
+          <Link to="/experiments/shadow-root">ShadowRoot version</Link>)
         </li>
         <li>
           <Link to="/experiments/variants">Stylistic Variants</Link>

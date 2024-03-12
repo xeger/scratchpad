@@ -22,9 +22,14 @@ function Frame() {
           <TabsTrigger value="https://local.darkwing.atlasoffice.io">Darkwing</TabsTrigger>
           <TabsTrigger value="https://crossnokaye.com">Marketing</TabsTrigger>
           <TabsTrigger value="https://xeger.net">Xeger</TabsTrigger>
+          <TabsTrigger value="https://google.com">Google</TabsTrigger>
         </TabsList>
       </Tabs>
-      <iframe className="h-full w-full" ref={frame} src="https://local.darkwing.atlasoffice.io" />
+      <iframe
+        className="h-full w-full"
+        ref={frame}
+        src="/f/office_everett_(boston_harbor)/process-view"
+      />
     </InlineFrameLayout>
   );
 }
