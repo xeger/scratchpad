@@ -40,7 +40,7 @@ function UserOrgList() {
             <div className="space-y-2">
               {data.map((org) => (
                 <div key={org.organizationId}>
-                  {org.displayName} (${countFac(org)})
+                  {org.displayName} ({countFac(org)} facilities)
                 </div>
               ))}
             </div>

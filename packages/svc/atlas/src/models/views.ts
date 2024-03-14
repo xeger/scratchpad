@@ -1,4 +1,4 @@
-import { Facility, Organization } from '@scratch/svc.atlas/models/components';
+import { Facility, Organization } from '@crossnokaye/typescript-sdk/models/components';
 
 export type Facility_Default = Pick<
   Facility,

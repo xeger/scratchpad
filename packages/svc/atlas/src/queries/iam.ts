@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { Organization } from '@crossnokaye/typescript-sdk/models/components';
+import { SDKError } from '@crossnokaye/typescript-sdk/models/errors';
+import { ListUserOrgsQueryParamView } from '@crossnokaye/typescript-sdk/models/operations';
 import { Atlas, AtlasSession } from '@scratch/svc.atlas';
-import { Organization } from '@scratch/svc.atlas/models/components';
-import { SDKError } from '@scratch/svc.atlas/models/errors';
-import { ListUserOrgsQueryParamView } from '@scratch/svc.atlas/models/operations';
 import {
   Organization_Extended,
   Organization_FacilitiesDefault,
