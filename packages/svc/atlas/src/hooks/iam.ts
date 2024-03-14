@@ -5,23 +5,23 @@ import { useQuery } from '@tanstack/react-query';
 export function useListUserOrgs() {
   const { sdk, session } = useAtlas();
 
-  return useQuery(queries.listUserOrgs(sdk, session.userId));
+  return useQuery(queries.listUserOrgs(sdk, session, session.userId));
 }
 
 export function useListUserOrgs_extended() {
   const { sdk, session } = useAtlas();
 
-  return useQuery(queries.listUserOrgs_extended(sdk, session.userId));
+  return useQuery(queries.listUserOrgs_extended(sdk, session, session.userId));
 }
 
 export function useListUserOrgs_facilitiesDefault() {
   const { sdk, session } = useAtlas();
 
-  return useQuery(queries.listUserOrgs_facilitiesDefault(sdk, session.userId));
+  return useQuery(queries.listUserOrgs_facilitiesDefault(sdk, session, session.userId));
 }
 
 export function useListUserOrgs_facilitiesExtended() {
   const { sdk, session } = useAtlas();
 
-  return useQuery(queries.listUserOrgs_facilitiesExtended(sdk, session.userId));
+  return useQuery(queries.listUserOrgs_facilitiesExtended(sdk, session, session.userId));
 }

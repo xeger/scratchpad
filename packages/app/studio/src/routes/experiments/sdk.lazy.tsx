@@ -23,7 +23,13 @@ function UserOrgList() {
         </CardHeader>
         <CardContent>
           {error ? (
-            <Notice text={error.toString()} variant="destructive" />
+            <>
+              <Notice text={error.toString()} variant="destructive" />
+              <p>
+                Make sure to export <code>VITE_ATLAS_ACCESS_TOKEN</code> and{' '}
+                <code>VITE_ATLAS_USER_ID</code> before running the app.
+              </p>
+            </>
           ) : isPending ? (
             <div className="space-y-2">
               <Skeleton className="h-4 w-[250px]" />

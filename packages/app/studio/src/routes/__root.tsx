@@ -4,17 +4,17 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, createRootRoute } from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/router-devtools';
 
-const { VITE_ATLAS_ACCESS_TOKEN, VITE_ATLAS_USER_ID, mode } = import.meta.env;
+const { VITE_ATLAS_ACCESS_TOKEN, VITE_ATLAS_USER_ID, MODE } = import.meta.env;
 const sdk = new Atlas({
   oauth2HeaderAuthorization:
-    mode === 'development' ? `Bearer ${VITE_ATLAS_ACCESS_TOKEN}` : undefined,
+    MODE === 'development' ? `Bearer ${VITE_ATLAS_ACCESS_TOKEN}` : undefined,
   serverURL: window.origin,
 });
 
 const queryClient = new QueryClient();
 
 const session =
-  mode === 'development'
+  MODE === 'development'
     ? {
         security: { oauth2HeaderAuthorization: VITE_ATLAS_ACCESS_TOKEN },
         status: 'authenticated' as const,
