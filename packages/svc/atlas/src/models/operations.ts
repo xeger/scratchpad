@@ -1,2 +1,2 @@
-export type * from 'atlas/models/operations';
-export { ListUserOrgsQueryParamView } from 'atlas/models/operations';
+export type * from '@crossnokaye/typescript-sdk/models/operations';
+export { ListUserOrgsQueryParamView } from '@crossnokaye/typescript-sdk/models/operations';

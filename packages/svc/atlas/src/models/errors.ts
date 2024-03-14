@@ -1,1 +1,1 @@
-export * from 'atlas/models/errors';
+export * from '@crossnokaye/typescript-sdk/models/errors';

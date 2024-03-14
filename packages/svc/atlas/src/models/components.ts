@@ -1,1 +1,1 @@
-export * from 'atlas/models/components';
+export * from '@crossnokaye/typescript-sdk/models/components';

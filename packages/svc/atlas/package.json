@@ -4,7 +4,7 @@
   "description": "Support code for ATLAS UI apps.",
   "type": "module",
   "exports": {
-    ".": "./src/index.tsx",
+    ".": "./src/index.ts",
     "./hooks/*": "./src/hooks/*.ts",
     "./models/*": "./src/models/*.ts",
     "./queries/*": "./src/queries/*.ts"
@@ -31,7 +31,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "atlas": "github:crossnokaye/typescript-sdk",
+    "@crossnokaye/typescript-sdk": "github:crossnokaye/typescript-sdk",
     "invariant": "^2.2.4"
   }
 }
