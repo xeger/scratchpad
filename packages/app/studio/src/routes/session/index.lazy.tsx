@@ -1,47 +1,36 @@
-import { Tabs, TabsList, TabsTrigger } from '@crossnokaye/ui-primitives/tabs';
+import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
+import {
+  PageHeader,
+  PageHeaderDescription,
+  PageHeaderHeading,
+} from '@scratch/ui.elements/page-header';
+import { UserAuthForm } from '@scratch/ui.elements/user-auth-form';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { useEffect, useRef, useState } from 'react';
-import { InlineFrameLayout } from '../../layouts/inline-frame';
+import { EmptyLayout } from '../../layouts/empty';
 
 export const Route = createLazyFileRoute('/session/')({
-  component: Frame,
+  component: SessionShow,
 });
 
-function Frame() {
-  const frame = useRef<HTMLDivElement>(null);
-  const [shadowRoot, setShadowRoot] = useState<ShadowRoot | null>(null);
-  const [indexHtml, setIndexHtml] = useState('');
-
-  useEffect(() => {
-    if (shadowRoot && indexHtml) {
-      shadowRoot.innerHTML = indexHtml;
-      return;
-    }
-    if (frame.current && !frame.current.shadowRoot) {
-      setShadowRoot(frame.current.attachShadow({ delegatesFocus: true, mode: 'open' }));
-    }
-    if (!indexHtml) {
-      fetch('https://local.darkwing.atlasoffice.io')
-        .then((r) => r.text())
-        .then(setIndexHtml);
-    }
-  }, [shadowRoot, indexHtml]);
-
+function SessionShow() {
   return (
-    <InlineFrameLayout>
-      <Tabs
-        defaultValue="https://local.darkwing.atlasoffice.io"
-        onValueChange={(value) => {
-          //frame.current?.setAttribute('src', value);
-        }}
-      >
-        <TabsList>
-          <TabsTrigger value="https://local.darkwing.atlasoffice.io">Darkwing</TabsTrigger>
-          <TabsTrigger value="https://crossnokaye.com">Marketing</TabsTrigger>
-          <TabsTrigger value="https://xeger.net">Xeger</TabsTrigger>
-        </TabsList>
-      </Tabs>
-      <div className="h-full w-full" ref={frame} />
-    </InlineFrameLayout>
+    <EmptyLayout>
+      <Card>
+        <CardHeader>
+          <CardTitle>Session</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <PageHeader>
+            <PageHeaderDescription>Hello</PageHeaderDescription>
+            <PageHeaderHeading>Sign In</PageHeaderHeading>
+            <div className="lg:p-8">
+              <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+                <UserAuthForm />
+              </div>
+            </div>
+          </PageHeader>
+        </CardContent>
+      </Card>
+    </EmptyLayout>
   );
 }
