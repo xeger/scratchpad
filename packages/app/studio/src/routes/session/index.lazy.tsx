@@ -1,13 +1,13 @@
 import { Tabs, TabsList, TabsTrigger } from '@crossnokaye/ui-primitives/tabs';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useEffect, useRef, useState } from 'react';
-import { EmptyLayout } from '../../layouts/empty';
+import { InlineFrameLayout } from '../../layouts/inline-frame';
 
-export const Route = createLazyFileRoute('/experiments/shadow-root')({
-  component: ShadowRoot,
+export const Route = createLazyFileRoute('/session/')({
+  component: Frame,
 });
 
-function ShadowRoot() {
+function Frame() {
   const frame = useRef<HTMLDivElement>(null);
   const [shadowRoot, setShadowRoot] = useState<ShadowRoot | null>(null);
   const [indexHtml, setIndexHtml] = useState('');
@@ -28,7 +28,7 @@ function ShadowRoot() {
   }, [shadowRoot, indexHtml]);
 
   return (
-    <EmptyLayout>
+    <InlineFrameLayout>
       <Tabs
         defaultValue="https://local.darkwing.atlasoffice.io"
         onValueChange={(value) => {
@@ -42,6 +42,6 @@ function ShadowRoot() {
         </TabsList>
       </Tabs>
       <div className="h-full w-full" ref={frame} />
-    </EmptyLayout>
+    </InlineFrameLayout>
   );
 }

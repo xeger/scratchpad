@@ -17,6 +17,7 @@ import { Route as rootRoute } from './routes/__root'
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
+const SessionIndexLazyImport = createFileRoute('/session/')()
 const ExperimentsVariantsLazyImport = createFileRoute('/experiments/variants')()
 const ExperimentsShadowRootLazyImport = createFileRoute(
   '/experiments/shadow-root',
@@ -30,6 +31,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const SessionIndexLazyRoute = SessionIndexLazyImport.update({
+  path: '/session/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/session/index.lazy').then((d) => d.Route))
 
 const ExperimentsVariantsLazyRoute = ExperimentsVariantsLazyImport.update({
   path: '/experiments/variants',
@@ -83,6 +89,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExperimentsVariantsLazyImport
       parentRoute: typeof rootRoute
     }
+    '/session/': {
+      preLoaderRoute: typeof SessionIndexLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -94,6 +104,7 @@ export const routeTree = rootRoute.addChildren([
   ExperimentsSdkLazyRoute,
   ExperimentsShadowRootLazyRoute,
   ExperimentsVariantsLazyRoute,
+  SessionIndexLazyRoute,
 ])
 
 /* prettier-ignore-end */
