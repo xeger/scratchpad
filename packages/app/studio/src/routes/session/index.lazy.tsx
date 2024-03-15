@@ -1,4 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
+import { useLoginurl } from '@scratch/svc.atlas/hooks/login';
 import {
   PageHeader,
   PageHeaderDescription,
@@ -6,6 +7,7 @@ import {
 } from '@scratch/ui.elements/page-header';
 import { UserAuthForm } from '@scratch/ui.elements/user-auth-form';
 import { createLazyFileRoute } from '@tanstack/react-router';
+import { useState } from 'react';
 import { EmptyLayout } from '../../layouts/empty';
 
 export const Route = createLazyFileRoute('/session/')({
@@ -13,6 +15,9 @@ export const Route = createLazyFileRoute('/session/')({
 });
 
 function SessionShow() {
+  const [email, setEmail] = useState('');
+  const result = useLoginurl(email, 'state');
+
   return (
     <EmptyLayout>
       <Card>
@@ -26,8 +31,8 @@ function SessionShow() {
             <div className="lg:p-8">
               <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                 <UserAuthForm
-                  onNext={async (_email, _password) => {
-                    return;
+                  onNext={async (email, _password) => {
+                    setEmail(email);
                   }}
                 />
               </div>

@@ -16,6 +16,9 @@ function Index() {
       <h1>Next-Gen UI: Experiments</h1>
       <ul className="list-disc list-inside">
         <li>
+          <Link to="/session">Session management</Link>
+        </li>
+        <li>
           <Link to="/experiments/sdk">Atlas SDK</Link>
         </li>
         <li>
