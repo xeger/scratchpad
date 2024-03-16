@@ -46,16 +46,19 @@ export function UserAuthForm({ className, hasPassword, onNext, ...props }: UserA
               onChange={(e) => setEmail(e.target.value)}
             />
             {hasPassword ? (
-              <Input
-                id="password"
-                type="password"
-                autoCorrect="off"
-                disabled={isLoading}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+              <>
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  autoCorrect="off"
+                  disabled={isLoading}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </>
             ) : null}
           </div>
-          <Button disabled={!email || isLoading}>
+          <Button disabled={!email || isLoading} variant="default">
             {isLoading && <span>icons.Spinner</span>}
             Next
           </Button>

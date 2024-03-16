@@ -14,7 +14,7 @@ const sdk = new Atlas({
 const queryClient = new QueryClient();
 
 const session =
-  MODE === 'development'
+  MODE === 'development' && VITE_ATLAS_ACCESS_TOKEN && VITE_ATLAS_USER_ID
     ? {
         security: { oauth2HeaderAuthorization: VITE_ATLAS_ACCESS_TOKEN },
         status: 'authenticated' as const,
