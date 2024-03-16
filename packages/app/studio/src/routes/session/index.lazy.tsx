@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
-import { useLoginurl } from '@scratch/svc.atlas/hooks/login';
+import { useAtlas } from '@scratch/svc.atlas';
 import {
   PageHeader,
   PageHeaderDescription,
@@ -16,7 +16,7 @@ export const Route = createLazyFileRoute('/session/')({
 
 function SessionShow() {
   const [email, setEmail] = useState('');
-  const result = useLoginurl(email, 'state');
+  const { sdk } = useAtlas();
 
   return (
     <EmptyLayout>
@@ -33,6 +33,7 @@ function SessionShow() {
                 <UserAuthForm
                   onNext={async (email, _password) => {
                     setEmail(email);
+                    sdk.loginv2.loginv2Loginurl(email, 'state');
                   }}
                 />
               </div>
