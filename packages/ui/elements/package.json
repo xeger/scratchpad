@@ -27,6 +27,6 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@crossnokaye/ui-primitives": "^0.0.1"
+    "@crossnokaye/ui-primitives": "*"
   }
 }

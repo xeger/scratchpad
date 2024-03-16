@@ -12,7 +12,7 @@
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
-    "@crossnokaye/ui-primitives": "^0.0.1",
+    "@crossnokaye/ui-primitives": "*",
     "@scratch/svc.atlas": "^0.0.1",
     "@scratch/ui.elements": "*",
     "@tanstack/react-query": "^5.24.6",

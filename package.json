@@ -8,6 +8,7 @@
     "type-check": "exec npm run -ws type-check"
   },
   "resolutions": {
+    "@crossnokaye/ui-primitives": "0.0.2",
     "eslint": "8.57.0",
     "typescript": "5.3.3"
   },
