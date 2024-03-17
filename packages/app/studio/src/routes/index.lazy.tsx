@@ -4,6 +4,7 @@ import { DemoLayout } from '../layouts/demo';
 import shadcnLogo from '/shadcn.png';
 import viteLogo from '/vite.svg';
 
+import { useAtlas } from '@scratch/svc.atlas';
 import './index.css';
 
 export const Route = createLazyFileRoute('/')({
@@ -11,9 +12,14 @@ export const Route = createLazyFileRoute('/')({
 });
 
 function Index() {
+  const { sessionMeta } = useAtlas();
+
   return (
     <DemoLayout>
       <h1>Next-Gen UI: Experiments</h1>
+      {sessionMeta.status === 'authenticated' ? (
+        <p>Welcome to Atlas, {sessionMeta.userId}.</p>
+      ) : null}
       <ul className="list-disc list-inside">
         <li>
           <Link to="/session">Session management</Link>

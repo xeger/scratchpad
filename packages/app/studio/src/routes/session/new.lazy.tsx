@@ -7,7 +7,7 @@ import {
   PageHeaderHeading,
 } from '@scratch/ui.elements/page-header';
 import { UserAuthForm } from '@scratch/ui.elements/user-auth-form';
-import { createLazyFileRoute } from '@tanstack/react-router';
+import { createLazyFileRoute, useNavigate } from '@tanstack/react-router';
 import { useState } from 'react';
 import { CenteredLayout } from '../../layouts/centered';
 
@@ -15,8 +15,31 @@ export const Route = createLazyFileRoute('/session/new')({
   component: SessionNew,
 });
 
+function hackishlyExtractUserID(token: string) {
+  const payloadB64URL = token.split('.')[1];
+
+  const payloadB64 = payloadB64URL.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(
+    window
+      .atob(payloadB64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join('')
+  );
+
+  const payload = JSON.parse(jsonPayload);
+  if (typeof payload.aid === 'string' && payload.aid) {
+    return payload.aid;
+  } else {
+    throw new Error('JWT token lacks aid claim (or is falsey/non-string)');
+  }
+}
+
 function SessionNew() {
-  const { sdk } = useAtlas();
+  const { sdk, setSessionMeta } = useAtlas();
+  const navigate = useNavigate();
 
   const [hasPassword, setHasPassword] = useState(false);
 
@@ -40,15 +63,23 @@ function SessionNew() {
                         password,
                       });
                       if (tokenGrant) {
-                        alert(`TODO - use token ${tokenGrant.accessToken}`);
+                        setSessionMeta((prev) => ({
+                          ...prev,
+                          security: {
+                            oauth2HeaderAuthorization: `Bearer ${tokenGrant.accessToken}`,
+                          },
+                          status: 'authenticated',
+                          userId: hackishlyExtractUserID(tokenGrant.accessToken),
+                        }));
+                        navigate({ to: '/' });
                       } else {
                         alert('TODO - show error message');
                       }
                     } else {
-                      // We're doing discovery (how does the given email perform login: password or SSO?)
+                      // We're completing discovery (i.e. how does the given email perform login: password or SSO?)
                       const { loginURL } = await sdk.loginv2.loginv2Loginurl(email, 'state');
                       if (loginURL?.url) {
-                        alert(`TODO - redirect to ${loginURL.url}`);
+                        window.location.replace(loginURL.url);
                       } else {
                         setHasPassword(true);
                       }

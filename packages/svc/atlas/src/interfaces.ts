@@ -1,11 +1,13 @@
 import type { Atlas } from '@crossnokaye/typescript-sdk';
+import type { SetStateAction } from 'react';
 
 /**
  * Implementation detail for Atlas SDK in React context.
  */
-export interface AtlasContext {
+export interface AtlasContextValue {
   sdk: Atlas;
   sessionMeta: AtlasSessionMeta;
+  setSessionMeta(newState: SetStateAction<AtlasSessionMeta>): void;
 }
 
 /**
@@ -15,6 +17,7 @@ export interface AtlasContext {
  * To check session status, use the `status` field.
  */
 export interface AtlasSessionMeta {
+  serverURL: string;
   security: { oauth2HeaderAuthorization: string };
   status: 'anonymous' | 'authenticated';
   userId: string;
