@@ -4,7 +4,7 @@ import { AtlasContext as IAtlasContext } from './interfaces';
 import { AtlasContext, AtlasProvider } from './provider';
 
 export type * from '@crossnokaye/typescript-sdk';
-export type { AtlasContext, AtlasSession } from './interfaces';
+export type { AtlasContext, AtlasSessionMeta } from './interfaces';
 
 export { Atlas, AtlasProvider };
 

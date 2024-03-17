@@ -3,25 +3,25 @@ import * as queries from '@scratch/svc.atlas/queries/iam';
 import { useQuery } from '@tanstack/react-query';
 
 export function useListUserOrgs() {
-  const { sdk, session } = useAtlas();
+  const { sdk, sessionMeta } = useAtlas();
 
-  return useQuery(queries.listUserOrgs(sdk, session, session.userId));
+  return useQuery(queries.listUserOrgs(sdk, sessionMeta, sessionMeta.userId));
 }
 
 export function useListUserOrgs_extended() {
-  const { sdk, session } = useAtlas();
+  const { sdk, sessionMeta } = useAtlas();
 
-  return useQuery(queries.listUserOrgs_extended(sdk, session, session.userId));
+  return useQuery(queries.listUserOrgs_extended(sdk, sessionMeta, sessionMeta.userId));
 }
 
 export function useListUserOrgs_facilitiesDefault() {
-  const { sdk, session } = useAtlas();
+  const { sdk, sessionMeta } = useAtlas();
 
-  return useQuery(queries.listUserOrgs_facilitiesDefault(sdk, session, session.userId));
+  return useQuery(queries.listUserOrgs_facilitiesDefault(sdk, sessionMeta, sessionMeta.userId));
 }
 
 export function useListUserOrgs_facilitiesExtended() {
-  const { sdk, session } = useAtlas();
+  const { sdk, sessionMeta } = useAtlas();
 
-  return useQuery(queries.listUserOrgs_facilitiesExtended(sdk, session, session.userId));
+  return useQuery(queries.listUserOrgs_facilitiesExtended(sdk, sessionMeta, sessionMeta.userId));
 }

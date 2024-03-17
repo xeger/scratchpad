@@ -8,7 +8,7 @@ export const Route = createLazyFileRoute('/session/')({
 });
 
 function SessionShow() {
-  const { session } = useAtlas();
+  const { sessionMeta } = useAtlas();
 
   return (
     <CenteredLayout>
@@ -17,7 +17,7 @@ function SessionShow() {
           <CardTitle>Session</CardTitle>
         </CardHeader>
         <CardContent>
-          {session.status === 'authenticated' ? (
+          {sessionMeta.status === 'authenticated' ? (
             <p>
               You're logged in. <Link to="/session">Log out</Link> to end your session.
             </p>

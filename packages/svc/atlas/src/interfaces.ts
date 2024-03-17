@@ -5,7 +5,7 @@ import type { Atlas } from '@crossnokaye/typescript-sdk';
  */
 export interface AtlasContext {
   sdk: Atlas;
-  session: AtlasSession;
+  sessionMeta: AtlasSessionMeta;
 }
 
 /**
@@ -14,7 +14,7 @@ export interface AtlasContext {
  * Anonymous sessions have falsey values, so API calls may return unexpected statuses.
  * To check session status, use the `status` field.
  */
-export interface AtlasSession {
+export interface AtlasSessionMeta {
   security: { oauth2HeaderAuthorization: string };
   status: 'anonymous' | 'authenticated';
   userId: string;

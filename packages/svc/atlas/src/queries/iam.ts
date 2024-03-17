@@ -3,7 +3,7 @@
 import { Organization } from '@crossnokaye/typescript-sdk/models/components';
 import { SDKError } from '@crossnokaye/typescript-sdk/models/errors';
 import { ListUserOrgsQueryParamView } from '@crossnokaye/typescript-sdk/models/operations';
-import { Atlas, AtlasSession } from '@scratch/svc.atlas';
+import { Atlas, AtlasSessionMeta } from '@scratch/svc.atlas';
 import {
   Organization_Extended,
   Organization_FacilitiesDefault,
@@ -17,7 +17,7 @@ const retry = (failureCount: number, error: SDKError) =>
 
 export function listUserOrgs(
   sdk: Atlas,
-  session: AtlasSession,
+  sessionMeta: AtlasSessionMeta,
   userId: string
 ): UseQueryOptions<Organization[], SDKError> {
   return {
@@ -25,14 +25,14 @@ export function listUserOrgs(
     queryKey: ['userOrgs', userId],
     queryFn: () =>
       sdk.iam
-        .listUserOrgs(session.security, userId)
+        .listUserOrgs(sessionMeta.security, userId)
         .then((result) => assertResponse(result, 'organizationCollection')),
   };
 }
 
 export function listUserOrgs_extended(
   sdk: Atlas,
-  session: AtlasSession,
+  sessionMeta: AtlasSessionMeta,
   userId: string
 ): UseQueryOptions<Organization_Extended[], SDKError> {
   return {
@@ -40,7 +40,7 @@ export function listUserOrgs_extended(
     queryKey: ['userOrgs', userId],
     queryFn: () =>
       sdk.iam
-        .listUserOrgs(session.security, userId, ListUserOrgsQueryParamView.Extended)
+        .listUserOrgs(sessionMeta.security, userId, ListUserOrgsQueryParamView.Extended)
         .then(
           (response) =>
             assertResponse(response, 'organizationCollection') as Organization_Extended[]
@@ -50,7 +50,7 @@ export function listUserOrgs_extended(
 
 export function listUserOrgs_facilitiesDefault(
   sdk: Atlas,
-  session: AtlasSession,
+  sessionMeta: AtlasSessionMeta,
   userId: string
 ): UseQueryOptions<Organization_FacilitiesDefault[], SDKError> {
   return {
@@ -58,7 +58,7 @@ export function listUserOrgs_facilitiesDefault(
     queryKey: ['userOrgs', userId],
     queryFn: () =>
       sdk.iam
-        .listUserOrgs(session.security, userId, ListUserOrgsQueryParamView.FacilitiesDefault)
+        .listUserOrgs(sessionMeta.security, userId, ListUserOrgsQueryParamView.FacilitiesDefault)
         .then(
           (response) =>
             assertResponse(response, 'organizationCollection') as Organization_FacilitiesDefault[]
@@ -68,7 +68,7 @@ export function listUserOrgs_facilitiesDefault(
 
 export function listUserOrgs_facilitiesExtended(
   sdk: Atlas,
-  session: AtlasSession,
+  sessionMeta: AtlasSessionMeta,
   userId: string
 ): UseQueryOptions<Organization_FacilitiesExtended[], SDKError> {
   return {
@@ -76,7 +76,7 @@ export function listUserOrgs_facilitiesExtended(
     queryKey: ['userOrgs', userId],
     queryFn: () =>
       sdk.iam
-        .listUserOrgs(session.security, userId, ListUserOrgsQueryParamView.FacilitiesExtended)
+        .listUserOrgs(sessionMeta.security, userId, ListUserOrgsQueryParamView.FacilitiesExtended)
         .then(
           (response) =>
             assertResponse(response, 'organizationCollection') as Organization_FacilitiesExtended[]
