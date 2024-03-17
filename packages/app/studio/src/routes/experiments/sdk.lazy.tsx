@@ -4,7 +4,7 @@ import { useListUserOrgs_facilitiesExtended } from '@scratch/svc.atlas/hooks/iam
 import { Organization_FacilitiesExtended } from '@scratch/svc.atlas/models/views';
 import { Notice } from '@scratch/ui.elements/notice';
 import { createLazyFileRoute } from '@tanstack/react-router';
-import { NormalLayout } from '../../layouts/normal';
+import { DemoLayout } from '../../layouts/demo';
 
 export const Route = createLazyFileRoute('/experiments/sdk')({
   component: UserOrgList,
@@ -16,7 +16,7 @@ function UserOrgList() {
   const countFac = (org: Organization_FacilitiesExtended) => org.facilities.length;
 
   return (
-    <NormalLayout>
+    <DemoLayout>
       <Card>
         <CardHeader>
           <CardTitle>My Organizations</CardTitle>
@@ -47,6 +47,6 @@ function UserOrgList() {
           )}
         </CardContent>
       </Card>
-    </NormalLayout>
+    </DemoLayout>
   );
 }

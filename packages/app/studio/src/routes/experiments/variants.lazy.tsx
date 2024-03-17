@@ -2,7 +2,7 @@ import { Button } from '@crossnokaye/ui-primitives/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import { NormalLayout } from '../../layouts/normal';
+import { DemoLayout } from '../../layouts/demo';
 
 export const Route = createLazyFileRoute('/experiments/variants')({
   component: Variants,
@@ -16,7 +16,7 @@ function Variants() {
   const variant = variants[count % variants.length];
 
   return (
-    <NormalLayout>
+    <DemoLayout>
       <Card>
         <CardHeader>
           <CardTitle>Component Variants</CardTitle>
@@ -28,6 +28,6 @@ function Variants() {
           </Button>
         </CardContent>
       </Card>
-    </NormalLayout>
+    </DemoLayout>
   );
 }

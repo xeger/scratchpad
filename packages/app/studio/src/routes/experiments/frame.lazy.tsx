@@ -1,7 +1,7 @@
 import { Tabs, TabsList, TabsTrigger } from '@crossnokaye/ui-primitives/tabs';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useRef } from 'react';
-import { EmptyLayout } from '../../layouts/empty';
+import { InlineFrameLayout } from '../../layouts/inline-frame';
 
 export const Route = createLazyFileRoute('/experiments/frame')({
   component: Frame,
@@ -11,7 +11,7 @@ function Frame() {
   const frame = useRef<HTMLIFrameElement>(null);
 
   return (
-    <EmptyLayout>
+    <InlineFrameLayout>
       <Tabs
         defaultValue="https://local.darkwing.atlasoffice.io"
         onValueChange={(value) => {
@@ -25,11 +25,7 @@ function Frame() {
           <TabsTrigger value="https://google.com">Google</TabsTrigger>
         </TabsList>
       </Tabs>
-      <iframe
-        className="h-full w-full"
-        ref={frame}
-        src="/f/office_everett_(boston_harbor)/process-view"
-      />
-    </EmptyLayout>
+      <iframe className="h-full w-full" ref={frame} src="https://local.darkwing.atlasoffice.io" />
+    </InlineFrameLayout>
   );
 }

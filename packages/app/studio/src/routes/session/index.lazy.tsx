@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@crossnokaye/ui-primitives/card';
 import { useAtlas } from '@scratch/svc.atlas';
 import { Link, createLazyFileRoute } from '@tanstack/react-router';
-import { EmptyLayout } from '../../layouts/empty';
+import { CenteredLayout } from '../../layouts/centered';
 
 export const Route = createLazyFileRoute('/session/')({
   component: SessionShow,
@@ -11,7 +11,7 @@ function SessionShow() {
   const { session } = useAtlas();
 
   return (
-    <EmptyLayout>
+    <CenteredLayout>
       <Card>
         <CardHeader>
           <CardTitle>Session</CardTitle>
@@ -28,6 +28,6 @@ function SessionShow() {
           )}
         </CardContent>
       </Card>
-    </EmptyLayout>
+    </CenteredLayout>
   );
 }

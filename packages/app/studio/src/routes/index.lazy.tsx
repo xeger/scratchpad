@@ -1,6 +1,6 @@
 import { Link, createLazyFileRoute } from '@tanstack/react-router';
 import reactLogo from '../assets/react.svg';
-import { NormalLayout } from '../layouts/normal';
+import { DemoLayout } from '../layouts/demo';
 import shadcnLogo from '/shadcn.png';
 import viteLogo from '/vite.svg';
 
@@ -12,7 +12,7 @@ export const Route = createLazyFileRoute('/')({
 
 function Index() {
   return (
-    <NormalLayout>
+    <DemoLayout>
       <h1>Next-Gen UI: Experiments</h1>
       <ul className="list-disc list-inside">
         <li>
@@ -40,6 +40,6 @@ function Index() {
           <img src={shadcnLogo} className="inline logo" alt="Vite logo" />
         </a>
       </div>
-    </NormalLayout>
+    </DemoLayout>
   );
 }

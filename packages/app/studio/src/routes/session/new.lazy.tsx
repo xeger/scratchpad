@@ -9,7 +9,7 @@ import {
 import { UserAuthForm } from '@scratch/ui.elements/user-auth-form';
 import { createLazyFileRoute } from '@tanstack/react-router';
 import { useState } from 'react';
-import { EmptyLayout } from '../../layouts/empty';
+import { CenteredLayout } from '../../layouts/centered';
 
 export const Route = createLazyFileRoute('/session/new')({
   component: SessionNew,
@@ -21,7 +21,7 @@ function SessionNew() {
   const [hasPassword, setHasPassword] = useState(false);
 
   return (
-    <EmptyLayout>
+    <CenteredLayout>
       <Card>
         <CardContent>
           <PageHeader>
@@ -60,6 +60,6 @@ function SessionNew() {
           </PageHeader>
         </CardContent>
       </Card>
-    </EmptyLayout>
+    </CenteredLayout>
   );
 }
