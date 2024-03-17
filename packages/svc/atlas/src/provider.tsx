@@ -1,5 +1,5 @@
 import { Atlas } from '@crossnokaye/typescript-sdk';
-import { createContext, useMemo, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 import type { AtlasContextValue, AtlasSessionMeta } from './interfaces';
 
 const defaultSessionMeta: AtlasSessionMeta = {
@@ -8,6 +8,28 @@ const defaultSessionMeta: AtlasSessionMeta = {
   status: 'anonymous',
   userId: '',
 };
+
+const storageKey = 'scratchpad.atlas.sessionMeta';
+
+function unmarshal(s: Storage | undefined): AtlasSessionMeta {
+  try {
+    if (s) {
+      const value = s.getItem(storageKey);
+      if (value) {
+        return JSON.parse(value);
+      }
+    }
+    return defaultSessionMeta;
+  } catch (e) {
+    return defaultSessionMeta;
+  }
+}
+
+function marshal(sessionMeta: AtlasSessionMeta, s: Storage | undefined) {
+  if (s) {
+    s.setItem(storageKey, JSON.stringify(sessionMeta));
+  }
+}
 
 /**
  * Consume an SDK instance from the React context tree.
@@ -36,23 +58,25 @@ export const AtlasContext = createContext<AtlasContextValue>({
  * A component that provides an Atlas SDK instance and session to all descendants.
  */
 export function AtlasProvider({
-  sessionMeta,
   children,
+  storage,
 }: {
-  sessionMeta?: AtlasSessionMeta;
   children: React.ReactNode;
+  storage?: Storage;
 }) {
-  const [latestSessionMeta, setSessionMeta] = useState(sessionMeta ?? defaultSessionMeta);
+  const [sessionMeta, setSessionMeta] = useState(unmarshal(storage));
   const sdk = useMemo(
     () =>
       new Atlas({
-        oauth2HeaderAuthorization: latestSessionMeta.security.oauth2HeaderAuthorization,
-        serverURL: latestSessionMeta.serverURL,
+        oauth2HeaderAuthorization: sessionMeta.security.oauth2HeaderAuthorization,
+        serverURL: sessionMeta.serverURL,
       }),
-    [latestSessionMeta]
+    [sessionMeta]
   );
+  useEffect(() => marshal(sessionMeta, storage), [sessionMeta, storage]);
+
   return (
-    <AtlasContext.Provider value={{ sdk, sessionMeta: latestSessionMeta, setSessionMeta }}>
+    <AtlasContext.Provider value={{ sdk, sessionMeta, setSessionMeta }}>
       {children}
     </AtlasContext.Provider>
   );

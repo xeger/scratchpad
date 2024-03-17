@@ -11,7 +11,7 @@ export const Route = createRootRoute({
     <>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <AtlasProvider>
+          <AtlasProvider storage={localStorage}>
             <Outlet />
             <TanStackRouterDevtools />
           </AtlasProvider>
