@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://atlaslive.io',
+        target: 'https://atlassandbox.io',
         changeOrigin: true,
       },
     },

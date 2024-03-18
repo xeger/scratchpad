@@ -32,7 +32,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "@crossnokaye/typescript-sdk": "github:crossnokaye/typescript-sdk#sdk",
+    "@crossnokaye/typescript-sdk": "github:crossnokaye/typescript-sdk#userinfo",
     "invariant": "^2.2.4"
   }
 }

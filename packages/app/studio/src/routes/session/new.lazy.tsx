@@ -15,28 +15,6 @@ export const Route = createLazyFileRoute('/session/new')({
   component: SessionNew,
 });
 
-function hackishlyExtractUserID(token: string) {
-  const payloadB64URL = token.split('.')[1];
-
-  const payloadB64 = payloadB64URL.replace(/-/g, '+').replace(/_/g, '/');
-  const jsonPayload = decodeURIComponent(
-    window
-      .atob(payloadB64)
-      .split('')
-      .map(function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-      })
-      .join('')
-  );
-
-  const payload = JSON.parse(jsonPayload);
-  if (typeof payload.aid === 'string' && payload.aid) {
-    return payload.aid;
-  } else {
-    throw new Error('JWT token lacks aid claim (or is falsey/non-string)');
-  }
-}
-
 function SessionNew() {
   const { sdk, setSessionMeta } = useAtlas();
   const navigate = useNavigate();
@@ -63,18 +41,25 @@ function SessionNew() {
                         password,
                       });
                       if (tokenGrant) {
-                        setSessionMeta((prev) => ({
-                          ...prev,
-                          security: {
-                            oauth2HeaderAuthorization: `Bearer ${tokenGrant.accessToken}`,
-                          },
-                          status: 'authenticated',
-                          timestamps: {
-                            expires: new Date(new Date().getTime() + 1000 * tokenGrant.expiresIn),
-                          },
-                          userId: hackishlyExtractUserID(tokenGrant.accessToken),
-                        }));
-                        navigate({ to: '/' });
+                        const { userInfo } = await sdk.loginv2.loginv2Userinfo({
+                          jwtHeaderAuthorization: tokenGrant.accessToken,
+                        });
+                        if (userInfo) {
+                          setSessionMeta((prev) => ({
+                            ...prev,
+                            security: {
+                              oauth2HeaderAuthorization: `Bearer ${tokenGrant.accessToken}`,
+                            },
+                            status: 'authenticated',
+                            timestamps: {
+                              expires: new Date(new Date().getTime() + 1000 * tokenGrant.expiresIn),
+                            },
+                            userId: userInfo.id,
+                          }));
+                          navigate({ to: '/' });
+                        } else {
+                          alert('TODO - show error message');
+                        }
                       } else {
                         alert('TODO - show error message');
                       }
