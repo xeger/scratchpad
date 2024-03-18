@@ -21,7 +21,7 @@ function SessionShow() {
         <CardContent>
           {sessionMeta.status === 'authenticated' ? (
             <>
-              <p>Welcome to Atlas, {sessionMeta.userId}.</p>
+              <p>Greetings, {sessionMeta.userId}.</p>
               <p>
                 <Button
                   variant="destructive"
@@ -32,10 +32,10 @@ function SessionShow() {
                         oauth2HeaderAuthorization: '',
                       },
                       status: 'anonymous',
+                      timestamps: { expires: new Date(0) },
                       userId: '',
-                    })).then(() => {
-                      navigate({ to: '/session/new' });
-                    });
+                    }));
+                    navigate({ to: '/session/new' });
                   }}
                 >
                   Log out

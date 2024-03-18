@@ -32,7 +32,7 @@ export interface OrgBarProps {
 }
 
 function shorten(displayName: string) {
-  let fallback = displayName.replace(/[^A-Z]/g, '');
+  let fallback = displayName.replace(/[^A-Z0-9]/g, '');
   if (fallback.length > 2) {
     fallback = fallback[0] + fallback[fallback.length - 1];
   }

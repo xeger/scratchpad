@@ -69,6 +69,9 @@ function SessionNew() {
                             oauth2HeaderAuthorization: `Bearer ${tokenGrant.accessToken}`,
                           },
                           status: 'authenticated',
+                          timestamps: {
+                            expires: new Date(new Date().getTime() + 1000 * tokenGrant.expiresIn),
+                          },
                           userId: hackishlyExtractUserID(tokenGrant.accessToken),
                         }));
                         navigate({ to: '/' });

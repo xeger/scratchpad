@@ -24,6 +24,7 @@ export interface AtlasSessionMeta {
   serverURL: string;
   security: { oauth2HeaderAuthorization: string };
   status: 'anonymous' | 'authenticated';
+  timestamps: { expires: Date };
   userId: string;
 }
 
@@ -31,17 +32,25 @@ const defaultSessionMeta: AtlasSessionMeta = {
   security: { oauth2HeaderAuthorization: '' },
   serverURL: window.origin,
   status: 'anonymous',
+  timestamps: { expires: new Date(0) },
   userId: '',
 };
 
 const storageKey = 'scratchpad.atlas.sessionMeta';
 
+// TODO: fancy Zod stuff (i.e. deal with timestamps without hand coding)
 function unmarshal(s: Storage | undefined): AtlasSessionMeta {
   try {
     if (s) {
       const value = s.getItem(storageKey);
       if (value) {
-        return JSON.parse(value);
+        const parsed = JSON.parse(value);
+        if (parsed?.timestamps?.expires) {
+          parsed.timestamps.expires = new Date(parsed.timestamps.expires);
+        }
+        if (parsed?.timestamps?.expires > new Date()) {
+          return parsed;
+        }
       }
     }
     return defaultSessionMeta;

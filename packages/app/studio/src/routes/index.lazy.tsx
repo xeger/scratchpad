@@ -5,6 +5,7 @@ import shadcnLogo from '/shadcn.png';
 import viteLogo from '/vite.svg';
 
 import { useAtlas } from '@scratch/svc.atlas';
+import { Notice } from '@scratch/ui.elements/notice';
 import './index.css';
 
 export const Route = createLazyFileRoute('/')({
@@ -16,10 +17,10 @@ function Index() {
 
   return (
     <DemoLayout>
-      <h1>Next-Gen UI: Experiments</h1>
       {sessionMeta.status === 'authenticated' ? (
-        <p>Welcome to Atlas, {sessionMeta.userId}.</p>
+        <Notice text={`Hello, ${sessionMeta.userId}!`} />
       ) : null}
+      <h1>Next-Gen UI: Experiments</h1>
       <ul className="list-disc list-inside">
         <li>
           <Link to="/session">Session management</Link>
