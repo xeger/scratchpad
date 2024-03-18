@@ -41,10 +41,10 @@ function SessionNew() {
                         password,
                       });
                       if (tokenGrant) {
-                        const { userInfo } = await sdk.loginv2.loginv2Userinfo({
+                        const { loginUserInfo } = await sdk.loginv2.loginv2Userinfo({
                           jwtHeaderAuthorization: tokenGrant.accessToken,
                         });
-                        if (userInfo) {
+                        if (loginUserInfo) {
                           setSessionMeta((prev) => ({
                             ...prev,
                             security: {
@@ -54,7 +54,7 @@ function SessionNew() {
                             timestamps: {
                               expires: new Date(new Date().getTime() + 1000 * tokenGrant.expiresIn),
                             },
-                            userId: userInfo.id,
+                            userId: loginUserInfo.sub,
                           }));
                           navigate({ to: '/' });
                         } else {
