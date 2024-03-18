@@ -1,16 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import type { Atlas } from '@crossnokaye/typescript-sdk';
 import { Organization } from '@crossnokaye/typescript-sdk/models/components';
 import { SDKError } from '@crossnokaye/typescript-sdk/models/errors';
 import { ListUserOrgsQueryParamView } from '@crossnokaye/typescript-sdk/models/operations';
-import { Atlas, AtlasSessionMeta } from '@scratch/svc.atlas';
+import { AtlasSessionMeta } from '@scratch/svc.atlas';
 import {
   Organization_Extended,
   Organization_FacilitiesDefault,
   Organization_FacilitiesExtended,
 } from '@scratch/svc.atlas/models/views';
 import type { UseQueryOptions } from '@tanstack/react-query';
-import { assertResponse } from '../httputil';
+import { assertResponse } from './util';
 
 const retry = (failureCount: number, error: SDKError) =>
   error.httpMeta.response.status >= 500 && failureCount < 3;

@@ -4,7 +4,7 @@
   "description": "Support code for ATLAS UI apps.",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
+    ".": "./src/index.tsx",
     "./hooks/*": "./src/hooks/*.ts",
     "./models/*": "./src/models/*.ts",
     "./queries/*": "./src/queries/*.ts"

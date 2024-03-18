@@ -1,6 +1,31 @@
+/* Changes to SDK & session management are rare & deserve a whole-page refresh */
+/* eslint-disable react-refresh/only-export-components */
+
 import { Atlas } from '@crossnokaye/typescript-sdk';
-import { createContext, useEffect, useMemo, useState } from 'react';
-import type { AtlasContextValue, AtlasSessionMeta } from './interfaces';
+import type { SetStateAction } from 'react';
+import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+
+/**
+ * Implementation detail for Atlas SDK in React context.
+ */
+export interface AtlasContextValue {
+  sdk: Atlas;
+  sessionMeta: AtlasSessionMeta;
+  setSessionMeta(newState: SetStateAction<AtlasSessionMeta>): void;
+}
+
+/**
+ * Authentication and authorization state for the Atlas SDK.
+ * This object is always present and its values are always non-nullish even when the user is not authenticated.
+ * Anonymous sessions have falsey values, so API calls may return unexpected statuses.
+ * To check session status, use the `status` field.
+ */
+export interface AtlasSessionMeta {
+  serverURL: string;
+  security: { oauth2HeaderAuthorization: string };
+  status: 'anonymous' | 'authenticated';
+  userId: string;
+}
 
 const defaultSessionMeta: AtlasSessionMeta = {
   security: { oauth2HeaderAuthorization: '' },
@@ -80,4 +105,11 @@ export function AtlasProvider({
       {children}
     </AtlasContext.Provider>
   );
+}
+
+/**
+ * Return Atlas SDK objects from the nearest AtlasProvider ancestor in the component tree.
+ */
+export function useAtlas(): AtlasContextValue {
+  return useContext(AtlasContext);
 }
