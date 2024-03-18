@@ -54,7 +54,7 @@ function SessionNew() {
                             timestamps: {
                               expires: new Date(new Date().getTime() + 1000 * tokenGrant.expiresIn),
                             },
-                            userId: loginUserInfo.sub,
+                            userinfo: loginUserInfo,
                           }));
                           navigate({ to: '/' });
                         } else {

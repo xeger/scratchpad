@@ -9,7 +9,7 @@ export const Route = createLazyFileRoute('/session/')({
 });
 
 function SessionShow() {
-  const { sessionMeta, setSessionMeta } = useAtlas();
+  const { reset, sessionMeta } = useAtlas();
   const navigate = useNavigate();
 
   return (
@@ -21,20 +21,12 @@ function SessionShow() {
         <CardContent>
           {sessionMeta.status === 'authenticated' ? (
             <>
-              <p>Greetings, {sessionMeta.userId}.</p>
+              <p>Greetings, {sessionMeta.userinfo.name}.</p>
               <p>
                 <Button
                   variant="destructive"
                   onClick={() => {
-                    setSessionMeta((prev) => ({
-                      ...prev,
-                      security: {
-                        oauth2HeaderAuthorization: '',
-                      },
-                      status: 'anonymous',
-                      timestamps: { expires: new Date(0) },
-                      userId: '',
-                    }));
+                    reset();
                     navigate({ to: '/session/new' });
                   }}
                 >

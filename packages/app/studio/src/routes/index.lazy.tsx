@@ -18,7 +18,7 @@ function Index() {
   return (
     <DemoLayout>
       {sessionMeta.status === 'authenticated' ? (
-        <Notice text={`Hello, ${sessionMeta.userId}!`} />
+        <Notice text={`Hello, ${sessionMeta.userinfo.name}!`} />
       ) : null}
       <h1>Next-Gen UI: Experiments</h1>
       <ul className="list-disc list-inside">
