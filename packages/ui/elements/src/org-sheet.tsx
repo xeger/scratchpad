@@ -14,6 +14,7 @@ import {
   SheetTrigger,
 } from '@crossnokaye/ui-primitives/sheet';
 import { Skeleton } from '@crossnokaye/ui-primitives/skeleton';
+import { cn } from '@crossnokaye/ui-primitives/utils';
 import { Link } from '@tanstack/react-router';
 
 interface FacilitySubset {
@@ -27,8 +28,10 @@ interface OrganizationSubset {
   facilities: FacilitySubset[];
 }
 
-export interface OrgBarProps {
+export interface OrgSheetProps {
+  children: React.ReactNode;
   orgs?: OrganizationSubset[];
+  side?: 'left' | 'right';
 }
 
 function shorten(displayName: string) {
@@ -55,9 +58,9 @@ function representFacility(fac: FacilitySubset) {
   );
 }
 
-function Teaser({ orgs }: Pick<OrgBarProps, 'orgs'>) {
+function Teaser({ orgs, side }: Pick<OrgSheetProps, 'orgs' | 'side'>) {
   return (
-    <div className="grid grid-cols-1 sticky left-0 h-full z-50 m-1">
+    <div className={cn('fixed', 'flex', 'flex-col', `${side}-0`, 'h-full', 'z-50', 'w-10', 'm-1')}>
       {orgs ? (
         orgs.map(representOrg)
       ) : (
@@ -73,7 +76,11 @@ function Teaser({ orgs }: Pick<OrgBarProps, 'orgs'>) {
   );
 }
 
-function Picker({ orgs }: Pick<OrgBarProps, 'orgs'>) {
+function ChildContent({ children, side }: Pick<OrgSheetProps, 'children' | 'side'>) {
+  return <div className={side === 'left' ? 'mr-14' : 'ml-14'}>{children}</div>;
+}
+
+function Picker({ orgs }: Pick<OrgSheetProps, 'orgs'>) {
   return (
     <Accordion type="multiple" className="w-full">
       {orgs?.map((org) => (
@@ -100,13 +107,14 @@ function Picker({ orgs }: Pick<OrgBarProps, 'orgs'>) {
   );
 }
 
-export function OrgBar({ orgs }: OrgBarProps) {
+export function OrgSheet({ children, orgs, side = 'left' }: OrgSheetProps) {
   return (
     <Sheet>
       <SheetTrigger disabled={!orgs?.length}>
-        <Teaser orgs={orgs} />
+        <Teaser orgs={orgs} side={side} />
       </SheetTrigger>
-      <SheetContent side="left" className="overflow-y-auto">
+      <ChildContent>{children}</ChildContent>
+      <SheetContent side={side} className="overflow-y-auto">
         <SheetHeader>
           <SheetTitle>(logo)&nbsp;ATLAS&nbsp;Platform</SheetTitle>
           <Separator />
