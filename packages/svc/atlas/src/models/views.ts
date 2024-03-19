@@ -21,8 +21,8 @@ export type Facility_Extended = Pick<
   | 'locationId'
   | 'useNarrativeFlow'
   | 'useAgentValidationFlow'
-  // | 'supportContactName'
-  // | 'supportContactPhone'
+  | 'supportContactName'
+  | 'supportContactPhone'
 >;
 
 export type Organization_Default = Pick<
