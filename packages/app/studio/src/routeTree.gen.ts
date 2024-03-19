@@ -19,6 +19,10 @@ import { Route as rootRoute } from './routes/__root'
 const IndexLazyImport = createFileRoute('/')()
 const SessionIndexLazyImport = createFileRoute('/session/')()
 const SessionNewLazyImport = createFileRoute('/session/new')()
+const FacilitiesLatestLazyImport = createFileRoute('/facilities/latest')()
+const FacilitiesFacilityIdLazyImport = createFileRoute(
+  '/facilities/$facilityId',
+)()
 const ExperimentsVariantsLazyImport = createFileRoute('/experiments/variants')()
 const ExperimentsShadowRootLazyImport = createFileRoute(
   '/experiments/shadow-root',
@@ -42,6 +46,20 @@ const SessionNewLazyRoute = SessionNewLazyImport.update({
   path: '/session/new',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/session/new.lazy').then((d) => d.Route))
+
+const FacilitiesLatestLazyRoute = FacilitiesLatestLazyImport.update({
+  path: '/facilities/latest',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/facilities/latest.lazy').then((d) => d.Route),
+)
+
+const FacilitiesFacilityIdLazyRoute = FacilitiesFacilityIdLazyImport.update({
+  path: '/facilities/$facilityId',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/facilities/$facilityId.lazy').then((d) => d.Route),
+)
 
 const ExperimentsVariantsLazyRoute = ExperimentsVariantsLazyImport.update({
   path: '/experiments/variants',
@@ -95,6 +113,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExperimentsVariantsLazyImport
       parentRoute: typeof rootRoute
     }
+    '/facilities/$facilityId': {
+      preLoaderRoute: typeof FacilitiesFacilityIdLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/facilities/latest': {
+      preLoaderRoute: typeof FacilitiesLatestLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/session/new': {
       preLoaderRoute: typeof SessionNewLazyImport
       parentRoute: typeof rootRoute
@@ -114,6 +140,8 @@ export const routeTree = rootRoute.addChildren([
   ExperimentsSdkLazyRoute,
   ExperimentsShadowRootLazyRoute,
   ExperimentsVariantsLazyRoute,
+  FacilitiesFacilityIdLazyRoute,
+  FacilitiesLatestLazyRoute,
   SessionNewLazyRoute,
   SessionIndexLazyRoute,
 ])

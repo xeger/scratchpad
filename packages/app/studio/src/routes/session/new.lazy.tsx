@@ -74,7 +74,7 @@ function SessionNew() {
                           },
                           userId: hackishlyExtractUserID(tokenGrant.accessToken),
                         }));
-                        navigate({ to: '/' });
+                        navigate({ to: '/facilities/latest' });
                       } else {
                         alert('TODO - show error message');
                       }

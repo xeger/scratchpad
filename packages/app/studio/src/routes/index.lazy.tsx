@@ -20,17 +20,25 @@ function Index() {
       {sessionMeta.status === 'authenticated' ? (
         <Notice text={`Hello, ${sessionMeta.userId}!`} />
       ) : null}
-      <h1>Next-Gen UI: Experiments</h1>
+      Welcome to the scratchpad: a disposable place to play with user interface technologies and
+      design ideas.
+      <h1>Hackathon Fodder</h1>
       <ul className="list-disc list-inside">
         <li>
-          <Link to="/session">Session management</Link>
+          <Link to="/session">Login/Logout</Link>
         </li>
         <li>
-          <Link to="/experiments/sdk">Atlas SDK</Link>
+          <Link to="/facilities/latest">Darkwing Mockup</Link>
+        </li>
+      </ul>
+      <h1>User Interface Experiments</h1>
+      <ul className="list-disc list-inside">
+        <li>
+          <Link to="/facilities/latest">Darkwing Mockup</Link>
         </li>
         <li>
-          <Link to="/experiments/frame">IFrame Hijinks</Link> (and{' '}
-          <Link to="/experiments/shadow-root">ShadowRoot version</Link>)
+          <Link to="/experiments/frame">IFrame Embedding</Link> (and{' '}
+          <Link to="/experiments/shadow-root">ShadowRoot Embedding</Link>)
         </li>
         <li>
           <Link to="/experiments/variants">Stylistic Variants</Link>
